@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.kio.carscars.entities.Carro;
-import com.kio.carscars.entities.Moto;
-import com.kio.carscars.entities.Veiculos;
+import com.kio.carscars.entities.veiculos.Carro;
+import com.kio.carscars.entities.veiculos.Moto;
+import com.kio.carscars.entities.veiculos.Veiculos;
 import com.kio.carscars.repositories.VeiculoRepository;
 
 import jakarta.transaction.Transactional;

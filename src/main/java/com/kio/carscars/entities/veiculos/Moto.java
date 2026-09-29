@@ -1,4 +1,4 @@
-package com.kio.carscars.entities;
+package com.kio.carscars.entities.veiculos;
 
 import com.kio.carscars.enums.TipoMoto;
 

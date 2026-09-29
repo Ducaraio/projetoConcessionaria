@@ -1,9 +1,10 @@
-package com.kio.carscars.entities;
+package com.kio.carscars.entities.veiculos;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kio.carscars.entities.Concessionaria;
 
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
