@@ -1,36 +1,41 @@
 package com.kio.carscars.entities.veiculos;
 
+import com.kio.carscars.entities.Concessionaria;
 import com.kio.carscars.enums.TipoCarro;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("carro")
 public class Carro extends Veiculos{
 	private static final long serialVersionUID = 1L;
 	
-	private TipoCarro tipo;
+	@Enumerated(EnumType.STRING)
+	private TipoCarro tipocarro;
 	private String modelo;
 	private String marca;
 	
 	public Carro() {
 	}
 	
-	public Carro(Long id, String placa, Integer ano, Double kmrodados, String cor, TipoCarro tipo, String modelo,
-			String marca) {
-		super(id, placa, ano, kmrodados, cor);
-		this.tipo = tipo;
+	public Carro( String placa, Integer ano, Double kmrodados, String cor, Concessionaria concessionaria,
+			TipoCarro tipocarro, String modelo, String marca) {
+		super(placa, ano, kmrodados, cor, concessionaria);
+		this.tipocarro = tipocarro;
 		this.modelo = modelo;
 		this.marca = marca;
 	}
 
+
 	public TipoCarro getTipo() {
-		return tipo;
+		return tipocarro;
 	}
 
 	public void setTipo(TipoCarro tipo) {
-		this.tipo = tipo;
+		this.tipocarro = tipo;
 	}
 
 	public String getModelo() {

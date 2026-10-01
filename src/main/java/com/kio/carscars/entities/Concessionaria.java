@@ -7,17 +7,15 @@ import java.util.Set;
 
 import com.kio.carscars.entities.veiculos.Veiculos;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tb_concessionaria" , uniqueConstraints = {@UniqueConstraint (columnNames = {"cep", "nome"})})
+@Table(name = "tb_concessionaria")
 public class Concessionaria implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -27,15 +25,13 @@ public class Concessionaria implements Serializable{
 	private String cep;
 	private String nome;
 	
-	@OneToMany(mappedBy = "concessionaria", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "concessionaria")
 	private Set<Veiculos> veiculos = new HashSet<>();
 	
 	public Concessionaria() {
 	}
 	
-	public Concessionaria(Long id, String cep, String nome) {
-		super();
-		this.id = id;
+	public Concessionaria(String cep, String nome) {
 		this.cep = cep;
 		this.nome = nome;
 	}

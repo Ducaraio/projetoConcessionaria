@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kio.carscars.entities.Concessionaria;
 
 import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +21,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity
 @Table(name = "tb_veiculo", uniqueConstraints = {@UniqueConstraint(columnNames = {"placa"})})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_veiculo", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "tipo_veiculo")
 public abstract class Veiculos implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -34,11 +33,11 @@ public abstract class Veiculos implements Serializable{
 	private Double kmrodados;
 	private String cor;
 	
-	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "concessionaria_id", nullable = false)
-	protected Concessionaria concessionaria;
+	@JoinColumn(name = "concessionaria_id")
+	private Concessionaria concessionaria;
 	
+	@JsonIgnore
 	public Concessionaria getConcessionaria() {
 		return concessionaria;
 	}
@@ -50,13 +49,12 @@ public abstract class Veiculos implements Serializable{
 	public Veiculos() {
 	}
 
-	public Veiculos(Long id, String placa, Integer ano, Double kmrodados, String cor) {
-		super();
-		this.id = id;
+	public Veiculos(String placa, Integer ano, Double kmrodados, String cor,  Concessionaria concessionaria) {
 		this.placa = placa;
 		this.ano = ano;
 		this.kmrodados = kmrodados;
 		this.cor = cor;
+		this.concessionaria = concessionaria;
 	}
 
 	public Long getId() {
